@@ -1,7 +1,10 @@
 package com.example.springaventure.controller.joueur
 
+import com.example.springaventure.model.dao.ArmureDao
 import com.example.springaventure.model.dao.PersonnageDao
+import com.example.springaventure.model.dao.TypeArmureDao
 import com.example.springaventure.model.dao.UtilisateurDao
+import com.example.springaventure.model.entity.Armure
 import com.example.springaventure.model.entity.Personnage
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContextHolder
@@ -18,7 +21,7 @@ class PersonnageControleur(
     /** DAO pour l'accès aux données des personnages. */
     val personnageDao: PersonnageDao,
     /** DAO pour l'accès aux données des utilisateurs. */
-    val utilisateurDao: UtilisateurDao
+    val utilisateurDao: UtilisateurDao, private val typeArmureDao: TypeArmureDao, private val armureDao: ArmureDao
 ) {
 
     /**
@@ -65,9 +68,24 @@ class PersonnageControleur(
     @GetMapping("/joueur/personnage/create")
     fun create(model: Model): String {
         val nouvellePersonnage = Personnage(null, "", 1, 1, 1, 1)
+        val nouvelleArmure = Armure(null, "", "", "")
+        val armure = armureDao.findAll()
+
         model.addAttribute("nouvellePersonnage", nouvellePersonnage)
+        model.addAttribute("nouvelleArmure", nouvelleArmure)
+        model.addAttribute("armure", armure)
         return "joueur/personnage/create"
     }
+
+    //    @GetMapping("/joueur/personnage/create")
+//    fun create(model: Model): String {
+//        val nouvellePersonnage = Personnage(null, "", 1, 1, 1, 1)
+//        val armure = armureDao.findAll()
+//
+//        model.addAttribute("nouvellePersonnage", nouvellePersonnage)
+//        model.addAttribute("armures", armure)
+//        return "joueur/personnage/create"
+//    }
 
     /**
      * Gère la création d'un nouveau personnage.

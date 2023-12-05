@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head th:replace="mesFragments :: fragHead">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="min-vh-100">
+    <nav th:replace="mesFragments :: fragNav"></nav>
+    <main class="container">
+        <h1>Détails de la bombe</h1>
+        <div>
+            <p><strong>Nom : </strong> <span th:text="${bombe.nom}"></span></p>
+            <p><strong>Description : </strong> <span th:text="${bombe.description}"></span></p>
+            <div class="row">
+                <div class="col-6">
+                    <p><strong>Bombe ID : </strong> <span th:text="${bombe.id}"></span></p>
+                    <p><strong>Nom de la bombe : </strong> <span th:text="${bombe.nom}"></span></p>
+                    <p><strong>Description de la bombe : </strong> <span th:text="${bombe.description}"></span></p>
+                    <p><strong>Nombre de Dés : </strong> <span th:text="${bombe.nbrDes}"></span></p>
+                    <p><strong>Dés Max : </strong> <span th:text="${bombe.maxDes}"></span></p>
+                </div>
+                <div>
+                    <a th:href="@{'/admin/bombe'}" class="btn btn-primary">
+                        Retour à la liste
+                    </a>
+                </div>
+            </div>
+    </main>
+
+</div>
+<footer th:replace="mesFragments :: fragFooter"></footer>
+</body>
+</html>
